@@ -59,15 +59,15 @@ public final class Constants {
     public static final double kBackRightChassisAngularOffset = Math.PI/2;
 
     /* Swerve Module CAN IDs */
-    public static final int kFrontLeftDrivingCanId = 1;
-    public static final int kRearLeftDrivingCanId = 5;
+    public static final int kFrontLeftDrivingCanId = 5;
+    public static final int kRearLeftDrivingCanId = 7;
     public static final int kFrontRightDrivingCanId = 3;
-    public static final int kRearRightDrivingCanId = 7;
+    public static final int kRearRightDrivingCanId = 1;
 
-    public static final int kFrontLeftTurningCanId = 2;
-    public static final int kRearLeftTurningCanId = 6;
+    public static final int kFrontLeftTurningCanId = 6;
+    public static final int kRearLeftTurningCanId = 8;
     public static final int kFrontRightTurningCanId = 4;
-    public static final int kRearRightTurningCanId = 8;
+    public static final int kRearRightTurningCanId = 2;
 
     public static final boolean kGyroReversed = false;
 
@@ -90,7 +90,7 @@ public final class Constants {
     public static final double kDrivingEncoderPositionFactor = (kWheelDiameterMeters * Math.PI)
         / kDrivingMotorReduction; // meters
     public static final double kDrivingEncoderVelocityFactor = ((kWheelDiameterMeters * Math.PI)
-        / kDrivingMotorReduction) / 60.0; // meters per second
+        / kDrivingMotorReduction) / 60.0; //meters per second
 
     public static final double kTurningEncoderPositionFactor = (2 * Math.PI); // radians
     public static final double kTurningEncoderVelocityFactor = (2 * Math.PI) / 60.0; // radians per second

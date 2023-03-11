@@ -37,16 +37,13 @@ public class SwerveModule extends SubsystemBase {
         turnMotor.set(turnPID.calculate(driveEncoder.getPosition()));
 
         driveEncoder.setPosition(Constants.kDrivingEncoderPositionFactor);
-        //driveEncoder.configAbsoluteSensorRange(Constants.kDrivingEncoderVelocityFactor);
+        driveEncoder.configMagnetOffset(Constants.kDrivingEncoderVelocityFactor);
 
         turnEncoder.setPosition(Constants.kTurningEncoderPositionFactor);
-        //turnEncoder.configAbsoluteSensorRange(Constants.kTurningEncoderVelocityFactor);
+        turnEncoder.configMagnetOffset(Constants.kTurningEncoderVelocityFactor);
         turnEncoder.configSensorDirection(true);
 
-        turnPID.setPositionPIDWrappingEnabled(true);
-        turnPID.setPositionPIDWrappingMinInput(Constants.kTurningEncoderPositionPIDMinInput);
-        turnPID.setPositionPIDWrappingMaxInput(Constants.kTurningEncoderPositionPIDMaxInput);
-
+        turnPID.enableContinuousInput(Constants.kTurningEncoderPositionPIDMinInput, Constants.kTurningEncoderPositionPIDMaxInput);
 
         driveMotor.setIdleMode(Constants.kDrivingMotorIdleMode);
         driveMotor.setIdleMode(Constants.kTurningMotorIdleMode);
@@ -77,8 +74,8 @@ public class SwerveModule extends SubsystemBase {
     
         SwerveModuleState optimizedDesiredState = SwerveModuleState.optimize(correctedDesiredState, new Rotation2d(turnEncoder.getPosition()));
     
-        drivePID.setReference(optimizedDesiredState.speedMetersPerSecond, CANSparkMax.ControlType.kVelocity);
-        turnPID.setReference(optimizedDesiredState.angle.getRadians(), CANSparkMax.ControlType.kPosition);
+        drivePID.setSetpoint(optimizedDesiredState.speedMetersPerSecond);
+        turnPID.setSetpoint(optimizedDesiredState.angle.getRadians());
     
       }
     
